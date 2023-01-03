@@ -308,7 +308,7 @@ static void tod_resync(UNIT *uptr)
             catchup_ticks = (uint32) delta * CLK_TPS;
             sim_debug(EXECUTE_MSG, &tod_dev,
                       "Catching up with a delta of %ld seconds (%d ticks).\n",
-                      delta, catchup_ticks);
+                      (long)delta, catchup_ticks); // jfs: fix clang
             while (catchup_ticks-- > 0) {
                 tod_tick(&tod_unit);
             }
